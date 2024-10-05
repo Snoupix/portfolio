@@ -23,33 +23,39 @@
 
     let inner_content = "";
     let cursor = 0;
-    let interval: NodeJS.Timeout | null = null;
+    let timeout: NodeJS.Timeout | null = null;
     let wait_tick = 0;
+    let [range_min, range_max] = [100, 200];
 
-    onMount(() => {
+    function tick() {
         if (content == undefined || content.length == 0) {
             return;
         }
 
-        interval = setInterval(() => {
-            if (inner_content.length == content[cursor].length) {
-                if (wait_tick != WAIT_TICKS) {
-                    wait_tick += 1;
-                    return;
-                }
-
-                cursor += 1
-                cursor %= content.length;
-                wait_tick = 0;
-                inner_content = "";
+        if (inner_content.length == content[cursor].length) {
+            if (wait_tick != WAIT_TICKS) {
+                wait_tick += 1;
+                timeout = setTimeout(tick, Math.floor(Math.random() * (200 - 100 + 1) + 100));
                 return;
             }
 
-            inner_content += content[cursor].at(Math.max(inner_content.length, 0));
-        }, 150);
+            cursor += 1
+            cursor %= content.length;
+            wait_tick = 0;
+            inner_content = "";
+            timeout = setTimeout(tick, Math.floor(Math.random() * (range_max - range_min + 1) + range_min));
+            return;
+        }
+
+        inner_content += content[cursor].at(Math.max(inner_content.length, 0));
+        timeout = setTimeout(tick, Math.floor(Math.random() * (200 - 100 + 1) + 100));
+    };
+
+    onMount(() => {
+        timeout = setTimeout(tick, Math.floor(Math.random() * (200 - 100 + 1) + 100));
     });
 
-    onDestroy(() => interval != null && clearInterval(interval));
+    onDestroy(() => timeout != null && clearTimeout(timeout));
 </script>
 
 <svelte:element this={level} class={computedClasses} style={computedStyles}>
