@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onDestroy, onMount } from "svelte";
+
   // Parameters
   export let level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = 'h1'; // The semantic heading level
   export let color: string | undefined = undefined; // An optional override color (defaults to accent)
@@ -6,6 +8,7 @@
   export let font: string | undefined = undefined; // An optional override font (defaults to FiraCode)
   export let commandStyle = true; // Whether to show chevron before heading
   export let blinkCursor = false; // Whether to show blinking cursor after heading
+  export let content: Array<string> | undefined = undefined;
 
   // Computed values, for reactivity
   $: computedColor = color ? `--heading-color: ${color};` : '';
@@ -15,10 +18,46 @@
   $: computedClasses =
     (blinkCursor ? 'blink-cursor ' : '') +
     (commandStyle ? 'command-style ' : '');
+
+    const WAIT_TICKS = 20;
+
+    let inner_content = "";
+    let cursor = 0;
+    let interval: NodeJS.Timeout | null = null;
+    let wait_tick = 0;
+
+    onMount(() => {
+        if (content == undefined || content.length == 0) {
+            return;
+        }
+
+        interval = setInterval(() => {
+            if (inner_content.length == content[cursor].length) {
+                if (wait_tick != WAIT_TICKS) {
+                    wait_tick += 1;
+                    return;
+                }
+
+                cursor += 1
+                cursor %= content.length;
+                wait_tick = 0;
+                inner_content = "";
+                return;
+            }
+
+            inner_content += content[cursor].at(Math.max(inner_content.length, 0));
+        }, 150);
+    });
+
+    onDestroy(() => interval != null && clearInterval(interval));
 </script>
 
 <svelte:element this={level} class={computedClasses} style={computedStyles}>
-  <slot />
+    {#if content != undefined && content.length != 0}
+        {inner_content}
+    {:else}
+        <slot />
+    {/if}
 </svelte:element>
 
 <style lang="scss">

@@ -28,18 +28,11 @@ const toggleSocialLimit = () => {
     numSocialsToDisplay === defLimit ? socials.length : defLimit;
 };
 </script>
-  
+
 <section class="contact-section" style="--accent:{accent};">
   <Heading level="h2" color="var(--accent)">Contact</Heading>
   <div class="buttons">
     <LinkButton to="/contact" icon="more-arrow">Get in Touch</LinkButton>
-    <LinkButton
-      to="{config.contact.pgpKeyLink}"
-      icon="pgp"
-      priority="outline"
-      textColor="var(--accent)"
-      target="_blank"
-    >View GPG Key</LinkButton>
   </div>
   <div class="social-buttons">
     {#each socials.slice(0, numSocialsToDisplay) as social} <SocialLink {...social} isSmall /> {/each}
@@ -53,7 +46,7 @@ const toggleSocialLimit = () => {
   </button>
   {/if}
 </section>
-    
+
   <style lang="scss">
   @import '$src/styles/media-queries.scss';
 
@@ -69,7 +62,7 @@ const toggleSocialLimit = () => {
       margin: 0;
     }
   }
-  
+
   .contact-section {
     .social-buttons {
       display: grid;

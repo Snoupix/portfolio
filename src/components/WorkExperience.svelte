@@ -4,7 +4,7 @@
   import LangBadge from '$src/components/LangBadge.svelte';
   import Icon from '$src/components/Icon.svelte';
 
-  const { workExperience } = config; 
+  const { workExperience } = config;
 
   </script>
 
@@ -18,7 +18,11 @@
       <h5 class="title">
         <span class="position">{job.jobTitle}</span>
         <span class="at">@</span>
-        <a class="company" href={job.companyUrl} target="_blank" rel="noreferrer">{job.company}</a>
+        {#if job.companyUrl}
+            <a class="company" href={job.companyUrl} target="_blank" rel="noreferrer">{job.company}</a>
+        {:else}
+            <span class="company">{job.company}</span>
+        {/if}
       </h5>
       <p class="date">{job.datesWorked}</p>
       <p class="description">{job.responsibilities || ''}</p>
@@ -26,10 +30,12 @@
         <h6>{job.projectType || 'Projects' }</h6>
         <div class="projects">
           {#each job.projects as project}
-            <div class="sub-project">
-              <img src={project.logo} alt={project.name} />
-              <p>{project.name} {project.description}</p>
-            </div>
+            <a href={project.url} target="_blank">
+                <div class="sub-project">
+                    <img src={project.logo} alt={project.name} />
+                    <p>{project.name} {project.description}</p>
+                </div>
+            </a>
           {/each}
         </div>
       {/if}
@@ -114,6 +120,9 @@
         gap: 0.5rem;
         align-items: flex-start;
         padding-left: 0.5rem;
+        a {
+            text-decoration: none;
+        }
         .sub-project {
           display: flex;
           gap: 0.5rem;
@@ -149,6 +158,8 @@
             }
             p {
               overflow: visible;
+              max-width: 100%;
+              margin-bottom: 5rem;
             }
           }
         }

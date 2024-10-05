@@ -6,7 +6,6 @@
   import SocialLink from '$src/components/SocialLink.svelte';
   import Heading from '$src/components/Heading.svelte';
   import EmailForm from './EmailForm.svelte';
-  import PGPKeys from './PgpKeys.svelte';
 
   // Static config for contact page
   const { contact } = config;
@@ -15,7 +14,7 @@
   export let data;
 
   // Append usernames, and (if available) metrics to available socials
-  let socials: UserSocial[] = socialNetworks.map((social, index) => {
+  let socials: UserSocial[] = socialNetworks.map(social => {
     const network: typeof SupportedSocials[number] = social.name;
     const metrics =
       data?.props[social.name.toLowerCase().replace(/\W/g, '')] || [];
@@ -52,7 +51,6 @@
     {/if}
   </div>
   <EmailForm />
-  <PGPKeys />
 </section>
 
 <style lang="scss">

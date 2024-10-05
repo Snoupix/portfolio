@@ -1,5 +1,5 @@
 <script lang="ts">
-  
+
   import { onMount } from 'svelte';
   import { config } from '$src/store/BlogStore';
   import Loading from '$src/components/Loading.svelte';
@@ -49,8 +49,8 @@
       commandStyle={false}
       blinkCursor={true}
       size="4rem"
-      color="var(--home-accent-background)">Alicia Sykes</Heading
-    >
+      content={["Samuel Dewaele", "Snoupix"]}
+      color="var(--home-accent-background)" />
     <div class="socials">
       {#each socialLinks as social}
         {#if social}

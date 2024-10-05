@@ -51,6 +51,7 @@ export interface SiteConfig {
     projectType?: 'Projects' | 'Clients' | 'Regiments' | string;
     projects?: {
       name: string;
+      url: string;
       logo: string;
       description: string;
     }[];
@@ -82,8 +83,6 @@ export interface SiteConfig {
         [key: string]: string; // And additional template params
       };
     };
-    pgpKeyLink: string; // Link to PGP public key
-    pgpPublicKey: string; // PGP public key to display
   };
   about: {
     intro: string;

@@ -46,9 +46,6 @@
   <section class="stack">
     <TechStack/>
   </section>
-
-  <!-- Social links -->
-  <section class="soclials"></section>
 </div>
 
 <style lang="scss">
