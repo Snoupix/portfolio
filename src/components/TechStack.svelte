@@ -6,13 +6,10 @@
 
   const techStacks = Object.keys(config.techStack);
   const techStackExtras = Object.keys(config.techStackExtras);
+</script>
 
-  export let accent = 'var(--accent)';
-
-  </script>
-  
-  <section class="tech-stack-section" style="--accent:{accent};">
-    <Heading level="h2">Tech Stack</Heading>
+  <section class="tech-stack-section">
+    <Heading level="h2" color="var(--accent)">Tech Stack</Heading>
     <p class="sub-info">
       Usually the tools I use for the job, depend on the job.
       There's no one-size fits all, and as such I'm always trying out new technologies, and constantly learning.
@@ -58,7 +55,7 @@
       {/each}
     </div>
   </section>
-  
+
   <style lang="scss">
   .tech-stack-section {
     .buttons {
@@ -121,7 +118,7 @@
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
-            line-clamp: 1; 
+            line-clamp: 1;
           }
         }
       }

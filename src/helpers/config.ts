@@ -218,7 +218,7 @@ const config: SiteConfig = {
     picture: 'https://i.ibb.co/svxHFMD/alicia-sykes-3.jpg',
   },
   techStack: {
-    backend: [
+    Backend: [
       {
         language: 'Rust',
         projects: ['AdGuardian-Term'],
@@ -244,7 +244,7 @@ const config: SiteConfig = {
         projects: [ 'revision-quizzes', 'intern-magnet', 'usermonkey' ],
       },
     ],
-    frontend: [
+    Frontend: [
       {
         language: 'Vue',
         projects: ['dashy', 'all-the-countries', 'alicia-sykes-website', 'tfl-lift-availability-dash'],
@@ -286,7 +286,7 @@ const config: SiteConfig = {
         projects: ['repo-badge-maker ', 'bullet-convertor', 'md-toc-generator', 'email-extractor', 'cyber-defence-presentation', 'web-dev-school', 'md-cv-maker'],
       },
     ],
-    mobile: [
+    Mobile: [
       {
         language: 'Swift',
         projects: ['hasami-shogi', 'Spotter'],
@@ -308,7 +308,7 @@ const config: SiteConfig = {
       //   projects: [''],
       // },
     ],
-    other: [
+    Other: [
       {
         language: 'Bash',
         projects: ['minimal-terminal-prompt'],
@@ -328,16 +328,16 @@ const config: SiteConfig = {
     ],
   },
   techStackExtras: {
-    devOps: [
+    DevOps: [
       'Docker', 'GitHubActions', 'GitLabCI/CD',
     ],
-    cloud: [
+    Cloud: [
       'OVH', 'Vercel', 'Cloudflare', 'AWS', 'GCP', 'Hetzner',
     ],
-    databases: [
+    Databases: [
       'MariaDB', 'SQLite', 'Redis', 'MySQL', 'MongoDB', 'ArangoDB'
     ],
-    testing: [
+    Testing: [
       'Jest', 'Puppeteer', 'Cypress',
     ],
   },

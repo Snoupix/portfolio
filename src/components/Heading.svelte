@@ -20,12 +20,16 @@
     (commandStyle ? 'command-style ' : '');
 
     const WAIT_TICKS = 20;
+    const [RANGE_MIN, RANGE_MAX] = [75, 275];
 
     let inner_content = "";
     let cursor = 0;
     let timeout: NodeJS.Timeout | null = null;
     let wait_tick = 0;
-    let [range_min, range_max] = [100, 200];
+
+    function random_timeout() {
+        return Math.floor(Math.random() * (RANGE_MAX - RANGE_MIN + 1) + RANGE_MIN);
+    }
 
     function tick() {
         if (content == undefined || content.length == 0) {
@@ -35,7 +39,7 @@
         if (inner_content.length == content[cursor].length) {
             if (wait_tick != WAIT_TICKS) {
                 wait_tick += 1;
-                timeout = setTimeout(tick, Math.floor(Math.random() * (200 - 100 + 1) + 100));
+                set_timeout();
                 return;
             }
 
@@ -43,17 +47,19 @@
             cursor %= content.length;
             wait_tick = 0;
             inner_content = "";
-            timeout = setTimeout(tick, Math.floor(Math.random() * (range_max - range_min + 1) + range_min));
+            set_timeout();
             return;
         }
 
         inner_content += content[cursor].at(Math.max(inner_content.length, 0));
-        timeout = setTimeout(tick, Math.floor(Math.random() * (200 - 100 + 1) + 100));
+        set_timeout();
     };
 
-    onMount(() => {
-        timeout = setTimeout(tick, Math.floor(Math.random() * (200 - 100 + 1) + 100));
-    });
+    function set_timeout() {
+        timeout = setTimeout(tick, random_timeout());
+    }
+
+    onMount(set_timeout);
 
     onDestroy(() => timeout != null && clearTimeout(timeout));
 </script>

@@ -13,17 +13,21 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +194 src/helpers/config.ts
+badd +340 src/helpers/config.ts
 badd +53 src/routes/+page.svelte
-badd +17 src/components/TechStack.svelte
-badd +33 src/components/WorkExperience.svelte
+badd +23 src/components/TechStack.svelte
+badd +10 src/components/WorkExperience.svelte
 badd +93 src/types/Config.ts
 badd +8 src/types/Socials.ts
 badd +23 src/routes/contact/+page.svelte
 badd +184 README.md
-badd +2 .env
-badd +49 src/routes/about/+page.svelte
-badd +22 ~/work/portfolio/src/components/Heading.svelte
+badd +1 .env
+badd +18 src/routes/about/+page.svelte
+badd +62 ~/work/portfolio/src/components/Heading.svelte
+badd +1 .gitignore
+badd +17 src/routes/index/IndexComponent.svelte
+badd +199 src/routes/projects/+page.svelte
+badd +87 src/routes/blog/+page.svelte
 argglobal
 %argdel
 edit ~/work/portfolio/src/components/Heading.svelte
@@ -35,7 +39,7 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-balt src/routes/+page.svelte
+balt src/routes/blog/+page.svelte
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -46,12 +50,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 35 - ((31 * winheight(0) + 27) / 55)
+let s:l = 35 - ((27 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 35
-normal! 011|
+normal! 018|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -66,7 +70,6 @@ if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

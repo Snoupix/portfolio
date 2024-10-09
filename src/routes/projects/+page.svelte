@@ -11,7 +11,7 @@
   import Icon from '$src/components/Icon.svelte';
   import RadioGroup from '$src/components/RadioGroup.svelte';
   import LangBadge from '$src/components/LangBadge.svelte';
-  
+
 
   export let data;
   let searchTerm = '';
@@ -21,7 +21,7 @@
   const mirrors = data.mirrors;
   let searchInputRef: any | HTMLElement; // Has to be any, as used in context of <svelte:element>
   let itemsToShow = 20;
-  
+
   let sortBy: string = '';
   let orderBy: string = '';
   let hiddenRepos: string[] = [];
@@ -196,7 +196,7 @@
 
 <section>
   <div class="title">
-    <Heading level="h2" size="2.5rem">projects</Heading>
+    <Heading level="h2" color="var(--accent)" size="2.5rem">Projects</Heading>
   </div>
 
   <div class="post-filter-options">

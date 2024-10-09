@@ -15,7 +15,7 @@
 
 <!-- Page title -->
 <div class="heading">
-  <Heading level="h2" size="2.5rem">{$t('pages.about')}</Heading>
+  <Heading level="h2" color="var(--accent)" size="2.5rem">{$t('pages.about')}</Heading>
 </div>
 
 <!-- Bio paragraphs -->
@@ -25,16 +25,6 @@
     {#each bio as bioLine}
       <p class="bio-line">{@html bioLine}</p>
     {/each}
-  </section>
-
-  <!-- Profile picture (and links to other pages) -->
-  <section class="ugly-picture">
-    <img src={picture} alt="Users profile" />
-    <div class="pages">
-      {#each morePages as page}
-        <a href={page.route} style={`--page-color: ${page.color};`}>{page.label}</a>
-      {/each}
-    </div>
   </section>
 
   <!-- Work Experience -->
@@ -79,7 +69,7 @@
     background: var(--card-background);
     // Intro / bio Section
     &.intro {
-      grid-column-start: span 2;
+      grid-column-start: span 3;
       i {
         opacity: 0.8;
       }
@@ -97,43 +87,6 @@
         }
       }
     }
-    // Profile pic + link list section
-    &.ugly-picture {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      img {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-        border-radius: var(--curve-factor);
-      }
-      .pages {
-        opacity: 0.9;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        &:hover {
-          opacity: 1;
-        }
-        a {
-          color: var(--page-color, var(--accent));
-          border-radius: var(--curve-factor);
-          padding: 0.25rem 0.5rem;
-          margin: 0.5rem;
-          font-weight: bold;
-          text-decoration: none;
-          transition: all ease-in-out 0.2s;
-          min-width: 5rem;
-          text-align: center;
-          border: 1px solid var(--page-color, var(--accent));
-          &:hover {
-            color: var(--background);
-            background: var(--page-color, var(--accent));
-          }
-        }
-      }
-    }
     // Work experience section
     &.experience {
       grid-column-start: span 2;
@@ -148,5 +101,4 @@
       grid-column-start: span 2;
     }
   }
-
 </style>

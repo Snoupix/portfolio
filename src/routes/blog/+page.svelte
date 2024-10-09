@@ -84,7 +84,7 @@
 </script>
 
 <div class="heading">
-  <Heading>{$t('pages.blog')}</Heading>
+  <Heading color="var(--accent)">{$t('pages.blog')}</Heading>
 </div>
 <div class="post-filter-options">
   <div>
